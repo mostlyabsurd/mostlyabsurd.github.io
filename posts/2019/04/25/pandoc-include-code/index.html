@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="canonical" href="https://mostlyabsurd.github.io/posts/2019/04/25/pandoc-include-code/" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Pandoc Include Code</title>
+     
+    <meta name="author" content="Robert Djubek" />
+      <meta name="keywords" content="hakyll,haskell,pandoc,pandoc include code">
+
+    <link href="../../../../../css/purifiedcss.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../../../../../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../../../../favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../favicon-16x16.png">
+    <link rel="manifest" href="../../../../../site.webmanifest">
+    <script src="../../../../../js/polyfill.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.min.js"></script?>
+    <![endif]-->
+    <!-- Stats -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//stats.mostlyabsurd.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//stats.mostlyabsurd.com/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt /></p></noscript>
+<!-- End Stats Code -->
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <a class="navbar-brand" href="../../../../../">Mostly Absurd</a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"><!-- --></span><!-- -->
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../">Home </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../about/">About </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../contact/">Contact </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../archive/">Archive </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../gallery/">Gallery </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search website" />
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-md-1 p-1">
+          
+          <h1>Pandoc Include Code</h1>
+          
+        </div>
+      </div>
+      <div class="row">
+  <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1 p-md-1 p-4">
+    <section class="header">
+      <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-1">
+        <h6><span>Posted on April 25, 2019  by Robert Djubek </span></h6>
+      </div>
+      <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-1">
+        <h6><span class="blog-tag"> <a href="../../../../../tags/hakyll/">hakyll</a>, <a href="../../../../../tags/haskell/">haskell</a>, and <a href="../../../../../tags/pandoc/">pandoc</a> </span></h6>
+      </div>
+    </section>
+    <div>
+      <br />
+      <br />
+      <section>
+        <h2 id="how-to-include-code-from-files">How to include code from files<a href="#how-to-include-code-from-files" class="anchor"> #</a></h2>
+<h3 id="pandoc-include-code"><a href="https://github.com/owickstrom/pandoc-include-code">Pandoc Include Code</a><a href="#pandoc-include-code" class="anchor"> #</a></h3>
+<p>The Pandoc Include Code project lets you embed code in pandoc (and also <a href="https://jaspervdj.be/hakyll/">Hakyll</a>) projects.</p>
+<p>Features include control over line numbers, language syntax highlighting, including files, and using snippets from portions of files.</p>
+<div class="sourceCode" id="maincode" data-startFrom="20"><pre class="sourceCode numberSource haskell numberLines"><code class="sourceCode haskell" style="counter-reset: source-line 19;"><span id="maincode-20"><a href="#maincode-20"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="maincode-21"><a href="#maincode-21"></a>main <span class="ot">=</span> hakyll <span class="op">$</span> <span class="kw">do</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource haskell numberLines"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">import</span> <span class="dt">Text.Pandoc</span> (<span class="dt">Format</span> (..), <span class="dt">Pandoc</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Walk</span> (walkM)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Filter.IncludeCode</span> (includeCode)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="ot">includeCodeTransform ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Pandoc</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>includeCodeTransform <span class="ot">=</span> walkM (includeCode (<span class="dt">Just</span> (<span class="dt">Format</span> <span class="st">&quot;html5&quot;</span>)))</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="ot">includeCodePandocCompiler ::</span> <span class="dt">Compiler</span> (<span class="dt">Item</span> <span class="dt">String</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>includeCodePandocCompiler <span class="ot">=</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>  pandocCompilerWithTransformM</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    defaultHakyllReaderOptions</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    defaultHakyllWriterOptions</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    (unsafeCompiler <span class="op">.</span> includeCodeTransform)</span></code></pre></div>
+<div class="sourceCode" id="cb2" data-startFrom="20"><pre class="sourceCode numberSource haskell numberLines"><code class="sourceCode haskell" style="counter-reset: source-line 19;"><span id="cb2-20"><a href="#cb2-20"></a><span class="kw">import</span> <span class="dt">Text.Pandoc</span> (<span class="dt">Format</span> (..), <span class="dt">Pandoc</span>)</span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Walk</span> (walkM)</span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Filter.IncludeCode</span> (includeCode)</span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="ot">includeCodeTransform ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Pandoc</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>includeCodeTransform <span class="ot">=</span> walkM (includeCode (<span class="dt">Just</span> (<span class="dt">Format</span> <span class="st">&quot;html5&quot;</span>)))</span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="ot">includeCodePandocCompiler ::</span> <span class="dt">Compiler</span> (<span class="dt">Item</span> <span class="dt">String</span>)</span>
+<span id="cb2-28"><a href="#cb2-28"></a>includeCodePandocCompiler <span class="ot">=</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>  pandocCompilerWithTransformM</span>
+<span id="cb2-30"><a href="#cb2-30"></a>    defaultHakyllReaderOptions</span>
+<span id="cb2-31"><a href="#cb2-31"></a>    defaultHakyllWriterOptions</span>
+<span id="cb2-32"><a href="#cb2-32"></a>    (unsafeCompiler <span class="op">.</span> includeCodeTransform)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">import</span> <span class="dt">Text.Pandoc</span> (<span class="dt">Format</span> (..), <span class="dt">Pandoc</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Walk</span> (walkM)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Filter.IncludeCode</span> (includeCode)</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="ot">includeCodeTransform ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Pandoc</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>includeCodeTransform <span class="ot">=</span> walkM (includeCode (<span class="dt">Just</span> (<span class="dt">Format</span> <span class="st">&quot;html5&quot;</span>)))</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="ot">includeCodePandocCompiler ::</span> <span class="dt">Compiler</span> (<span class="dt">Item</span> <span class="dt">String</span>)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>includeCodePandocCompiler <span class="ot">=</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  pandocCompilerWithTransformM</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    defaultHakyllReaderOptions</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    defaultHakyllWriterOptions</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    (unsafeCompiler <span class="op">.</span> includeCodeTransform)</span></code></pre></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <footer class="col-6 offset-3">
+    </footer>
+    <script src="../../../../../js/bootstrap-native-v4.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+xmlns:xhtml="http://www.w3.org/1999/xhtml"
+xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url>
+  <loc>https://myfriendshate.me</loc>
+  <changefreq>daily</changefreq>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/about/</loc>
+  <lastmod>2019-09-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/contact/</loc>
+  <lastmod>2020-02-17T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/posts/2019/06/09/minimal-imports-maximal-imports-examples/</loc>
+  <lastmod>2019-09-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/posts/2019/06/03/minimal-imports-maximal-imports/</loc>
+  <lastmod>2019-09-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/posts/2019/04/25/pandoc-include-code/</loc>
+  <lastmod>2019-09-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/06/24/thompson-wheeler-anarchy/</loc>
+  <lastmod>2019-09-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/06/24/thompson-wheeler-bisexual-pride/</loc>
+  <lastmod>2019-09-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/06/24/thompson-wheeler-lesbian-pride/</loc>
+  <lastmod>2019-09-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/06/24/thompson-wheeler-trans-pride/</loc>
+  <lastmod>2019-09-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/06/24/trans-anarchy-symbol/</loc>
+  <lastmod>2019-09-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/11/21/coda-marble/</loc>
+  <lastmod>2020-03-09T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/11/asexual-nixos/</loc>
+  <lastmod>2019-12-11T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/11/magenta-purple-haskell/</loc>
+  <lastmod>2019-12-11T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/11/magenta-purple-nixos/</loc>
+  <lastmod>2019-12-11T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/11/official-nixos/</loc>
+  <lastmod>2019-12-11T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/11/trans-haskell-1/</loc>
+  <lastmod>2019-12-11T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/11/trans-haskell-group/</loc>
+  <lastmod>2019-12-11T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/11/trans-haskell/</loc>
+  <lastmod>2019-12-11T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/11/trans-nixos/</loc>
+  <lastmod>2019-12-11T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/20/asexual-nixos-1/</loc>
+  <lastmod>2019-12-20T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/20/asexual-nixos/</loc>
+  <lastmod>2019-12-20T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/20/official-nixos/</loc>
+  <lastmod>2019-12-20T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/20/purple-magenta-haskell-group/</loc>
+  <lastmod>2019-12-20T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/20/purple-magenta-haskell/</loc>
+  <lastmod>2019-12-20T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2019/12/30/nixos-lambda/</loc>
+  <lastmod>2019-12-30T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/01/03/planet-scape/</loc>
+  <lastmod>2020-01-03T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/01/03/poster-planet-scape/</loc>
+  <lastmod>2020-01-03T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/01/11/spilled-paint-5x7/</loc>
+  <lastmod>2020-01-11T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/01/15/rainbow-elixir-droplets/</loc>
+  <lastmod>2020-01-15T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/01/19/spilled-paint-5x7/</loc>
+  <lastmod>2020-01-19T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/01/31/not-an-eye/</loc>
+  <lastmod>2020-01-31T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/02/01/technical-exercise/</loc>
+  <lastmod>2020-02-01T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/02/05/agdaboi-matte-5x7/</loc>
+  <lastmod>2020-02-05T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/02/08/agdabois/</loc>
+  <lastmod>2020-02-08T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://myfriendshate.me/pieces/2020/02/08/applied-technical-exercise/</loc>
+  <lastmod>2020-02-08T00:00:00Z</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url></urlset>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="canonical" href="https://mostlyabsurd.github.io/posts/2019/06/03/minimal-imports-maximal-imports/" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Min-Maxing Your Haskell Imports</title>
+     
+    <meta name="author" content="Robert Djubek" />
+      <meta name="keywords" content="haskell,vim,tooling,nixos,ddump-minimal-imports,GHC,vim,emacs">
+
+    <link href="../../../../../css/purifiedcss.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../../../../../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../../../../favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../favicon-16x16.png">
+    <link rel="manifest" href="../../../../../site.webmanifest">
+    <script src="../../../../../js/polyfill.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.min.js"></script?>
+    <![endif]-->
+    <!-- Stats -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//stats.mostlyabsurd.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//stats.mostlyabsurd.com/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt /></p></noscript>
+<!-- End Stats Code -->
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <a class="navbar-brand" href="../../../../../">Mostly Absurd</a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"><!-- --></span><!-- -->
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../">Home </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../about/">About </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../contact/">Contact </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../archive/">Archive </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="../../../../../gallery/">Gallery </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search website" />
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-md-1 p-1">
+          
+          <h1>Min-Maxing Your Haskell Imports</h1>
+          
+        </div>
+      </div>
+      <div class="row">
+  <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1 p-md-1 p-4">
+    <section class="header">
+      <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-1">
+        <h6><span>Posted on June  3, 2019  by Robert Djubek </span></h6>
+      </div>
+      <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-1">
+        <h6><span class="blog-tag"> <a href="../../../../../tags/haskell/">haskell</a>, <a href="../../../../../tags/vim/">vim</a>, <a href="../../../../../tags/tooling/">tooling</a>, and <a href="../../../../../tags/nixos/">nixos</a> </span></h6>
+      </div>
+    </section>
+    <div>
+      <br />
+      <br />
+      <section>
+        <h2 id="explicit-imports">Explicit imports<a href="#explicit-imports" class="anchor"> #</a></h2>
+<p>As you may well know it’s good practice when writing haskell to use qualified imports when appropriate as well as explicitly list what you import and export from <a href="https://en.wikibooks.org/wiki/Haskell/Modules">modules.</a> This is beneficial for someone else (which includes your future self) to understand where the functions and data types you’re using originate. It makes your code more approachable and maintanable. The problem is when you’re originally writing (or editing later) the code you don’t know what you’re going to need! This can be annoying.</p>
+<p>How do we have our cake and eat it too? When we’re writing software we want easy access to imports (for both you and your editor for the sake of code completion), and when it’s “done” to use explicit imports… until the next time we work on it. ;)</p>
+<h3 id="editors-are-your-friends">Editors are your friends<a href="#editors-are-your-friends" class="anchor"> #</a></h3>
+<p>If you’re using an IDE or a proper editor (vim, emacs, etc.) with appropriate plugins ( <a href="https://github.com/ndmitchell/ghcid">ghcid</a>, <a href="https://github.com/chrisdone/hindent">hindent</a>, <a href="https://github.com/ndmitchell/hlint">hlint</a> ), various compiler flags, … your tools can and will help you with this problem. They might suggest what you need to import, or inform you of unnecessary imports you aren’t using. You’ll get various warnings and compile errors that prompt you along. You can also scan the code yourself and decide. You can start off by importing a whole module, and then adding () and fixing compile errors 1 by 1 adding to the list. Anyway, it’s tedious. Who has time for that?</p>
+<h3 id="more-tools-to-make-writing-idiomatic-code-easier">More tools to make writing idiomatic code easier<a href="#more-tools-to-make-writing-idiomatic-code-easier" class="anchor"> #</a></h3>
+<p>I’m a tool maker. I like tools. I especially like <a href="https://en.wikipedia.org/wiki/Tool_(band)">Tool</a>. I might even be a tool. Most importantly I like making tools and having tools. I like fixing things and being efficient. and I’m a recovering perfectionist. If I can make a tool (either software or in meatspace) that makes a task easier, better, faster… <a href="https://xkcd.com/1319/">I will.</a> Sometimes the tool takes longer to make than the task to complete. However, the joy for me is often in making and using the tool. The tool that <em>I</em> made. Why does this matter to you? I made a few useful tools to further aid in solving the above problem. and I’m sharing them with you.</p>
+<h2 id="enter-minimal-imports-and-maximal-imports">Enter minimal-imports and maximal-imports<a href="#enter-minimal-imports-and-maximal-imports" class="anchor"> #</a></h2>
+<p>I.e., the inspiration of the title of this post. and this post. Yes, it’s an absurd title. Look where you are. :) Anyway, “Minimal imports” is actually a real thing that I didn’t totally just make up. Maximal imports (the name), however, is a joke. The corresponding program is serious. Naming is hard. Even <a href="https://twitter.com/kmett">Edward Kmett</a> didn’t have a name for the concept that maximal-imports embodies.</p>
+<p><a href="https://gist.github.com/Kiwi/5e8ce26a765720d6116e1fe572acf712">This</a> is what you’ve been eagerly anticipating while reading this robbish. There you will (currently) find two files. They will eventually be in a normal git repository. I have a shell.nix I use to setup the environment and a few other things I want to add. In the meantime you can compile them <code>ghc -O2 filename.hs</code> and put them on your path. If you find problems let me know and I’ll try to fix. They’re quite primitive and unrefined at this point. They’re probably not even good. I hacked them together over “a few” sleep deprived hours over night, got them to work, and that’s about where they are right now. Then again, what they do isn’t particularly complicated, either. Ironically they’re probably not idiomatic. But the imports serve as examples of the to and from.</p>
+<h3 id="how-its-used">How it’s used<a href="#how-its-used" class="anchor"> #</a></h3>
+<p>In your proper editor (vim, doom-emacs, spacemacs, evil-mode, …) go into visual mode, select all of your imports, only your imports (with 2 caveats), and type one of</p>
+<pre><code>:!minimal-imports
+:!maximal-imports</code></pre>
+<p>make sure you have saved recently in case something goes wrong… it shouldn’t go wrong, but… there are no guarantees, there is no warranty. :)</p>
+<p>Depending on which one you use you will either end up with your imports replaced with the minimal amount of imports that explicitly list everything, or maximal imports that import entire modules. You may also end up with no modifications to your imports in certain circumstances (see the caveats) Maximal-imports can potentially cause problems if shadowing occurs between modules. Just fix that import (use qualified imports or what not) if GHC complains.</p>
+<p>This is surely possible to use in a subset of other editors but I’m not sure how to because I don’t use them. If you figure it out let me know and I’ll update the instructions.</p>
+<h3 id="how-it-works">How it works<a href="#how-it-works" class="anchor"> #</a></h3>
+<p>The vim command sends the selected text to the program over stdin/stdout. The program sends text back after modifying it. Vim replaces the text you selected with the text the program sends over the pipe. The program does a bit of hackish checking to determine what is an import and what is not. Minimal-imports will attempt to find a file that contains the necessary imports. Explained below.</p>
+<h2 id="how-to-use">How to use<a href="#how-to-use" class="anchor"> #</a></h2>
+<p><strong>for minimal-imports to work you must have done two things</strong></p>
+<p><em>these are the caveats</em></p>
+<ul>
+<li>You have to have compiled your program with the GHC flag <code>-ddump-minimal-imports.</code> The more recently the better or you might not end up with the right imports.</li>
+<li>You must have a single line comment <code>-- M.imports</code> selected above, and along, with your imports when you run the command. M.imports is named after your module. The file <code>src/Site/Slug.hs</code> would need <code>-- Site.Slug.imports</code> If either of those conditions is not met it won’t work. You’ll (well, should) merely end up with your imports unchanged. Maybe an extra new line. No big deal.</li>
+</ul>
+<h2 id="the-idea-the-inspiration-the-implementation">The idea, the inspiration, the implementation<a href="#the-idea-the-inspiration-the-implementation" class="anchor"> #</a></h2>
+<p>While making this site, in fact, I was tired of doing all of this by hand. I asked around if there was a way to make it easier. <a href="https://gist.github.com/Kiwi/c3d02b3addc3d28649668aadef284aab">The original question.</a> Ed Kmett told me about -ddump-minimal-imports. As well as that there’s <a href="https://hackage.haskell.org/package/packunused">another tool</a> that makes use of that flag but it does not do the same thing. He couldn’t remember the name at the time but I later found out, obviously. Anyway, that was a start.</p>
+<h3 id="the-hard-part-already-exists">The hard part already exists<a href="#the-hard-part-already-exists" class="anchor"> #</a></h3>
+<p>If you’re not familiar with it beyond the mentioning above <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/separate_compilation.html#ghc-flag--ddump-minimal-imports">-ddump-minimal-imports</a> is a GHC flag that causes the compiler to create the files with the form M.imports. (where M is the module name) The contents of the file are the explicit imports that we desire in our final project.</p>
+<h3 id="my-first-attempt">My first attempt<a href="#my-first-attempt" class="anchor"> #</a></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="va">SCRIPT=$(</span><span class="ex">realpath</span> <span class="st">&quot;</span><span class="va">$0</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="va">SCRIPTPATH=$(</span><span class="fu">dirname</span> <span class="st">&quot;</span><span class="va">$SCRIPT</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="va">ROOTPATH=</span><span class="st">&quot;</span><span class="va">$(</span><span class="bu">cd</span> <span class="st">&quot;</span><span class="va">$SCRIPTPATH</span><span class="st">&quot;</span>/../ <span class="kw">&amp;&amp;</span> <span class="bu">pwd</span><span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>        <span class="bu">printf</span> <span class="st">&quot;\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n%s\n\n&quot;</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>	<span class="bu">printf</span> <span class="st">&quot;\n&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>	<span class="fu">cat</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span><span class="kw">;</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="kw">done</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="bu">printf</span> <span class="st">&quot;\n\n\n&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span> <span class="kw">;</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="kw">done</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a></span></code></pre></div>
+<p>(I don’t know shell if it’s bad that’s why) Obviously, while this makes finding and seeing the imports -ddump-minimal-imports easier, it still requires a lot of manual intervention and copy-paste. It so happens to be easily automated… as you’ve seen in this very post. I also didn’t notice there was a flag to set where they get dumped….</p>
+<h3 id="second-attempt-editor-integration">Second attempt, editor integration!<a href="#second-attempt-editor-integration" class="anchor"> #</a></h3>
+<p>There’s a <a href="http://www.haskellforall.com/2018/10/detailed-walkthrough-for-beginner.html">good blog post</a> by Gabriel Gonzalez that goes through and explains the implementation of a vim plugin that aligns equals signs. I won’t use it because I prefer running hindent on whole files to avoid <a href="http://catb.org/jargon/html/B/bikeshedding.html">bikeshedding</a> about formatting and decision paralysis. It’s one less thing I have to worry about if I let hindent decide the final format. I can focus on getting the code to work and let hindent indent it all proper like and consistent. Anyway, the idea was largely applicable (especially in maximal-imports, just look at it…) to the task at hand.</p>
+<p>Anyway, combine all of that together and ta da; here we are.</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <footer class="col-6 offset-3">
+    </footer>
+    <script src="../../../../../js/bootstrap-native-v4.min.js"></script>
+  </body>
+</html>
