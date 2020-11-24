@@ -11,7 +11,7 @@
     <meta name="author" content="Robert Djubek" />
       <meta name="keywords" content="haskell,vim,tooling,nixos,ddump-minimal-imports,GHC,vim,emacs">
 
-    <link href="../../../../../css/purifiedcss.css" rel="stylesheet" />
+    <link href="../../../../../css/purifiedcss.css" rel="stylesheet" media="all" />
     <link rel="shortcut icon" href="../../../../../favicon.ico" type="image/x-icon" />
     <link rel="icon" href="../../../../../favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="../../../../../apple-touch-icon.png">
@@ -75,7 +75,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-md-1 p-1">
+        <div class="col-xs-6 offset-xs-3 col-sm-8 offset-sm-2 p-xs-1 p-1">
           
           <h1>Min-Maxing Your Haskell Imports</h1>
           
@@ -126,26 +126,26 @@
 <h3 id="the-hard-part-already-exists">The hard part already exists<a href="#the-hard-part-already-exists" class="anchor"> #</a></h3>
 <p>If you’re not familiar with it beyond the mentioning above <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/separate_compilation.html#ghc-flag--ddump-minimal-imports">-ddump-minimal-imports</a> is a GHC flag that causes the compiler to create the files with the form M.imports. (where M is the module name) The contents of the file are the explicit imports that we desire in our final project.</p>
 <h3 id="my-first-attempt">My first attempt<a href="#my-first-attempt" class="anchor"> #</a></h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#!/bin/sh</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="va">SCRIPT=$(</span><span class="ex">realpath</span> <span class="st">&quot;</span><span class="va">$0</span><span class="st">&quot;</span><span class="va">)</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="va">SCRIPTPATH=$(</span><span class="fu">dirname</span> <span class="st">&quot;</span><span class="va">$SCRIPT</span><span class="st">&quot;</span><span class="va">)</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="va">ROOTPATH=</span><span class="st">&quot;</span><span class="va">$(</span><span class="bu">cd</span> <span class="st">&quot;</span><span class="va">$SCRIPTPATH</span><span class="st">&quot;</span>/../ <span class="kw">&amp;&amp;</span> <span class="bu">pwd</span><span class="va">)</span><span class="st">&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>        <span class="bu">printf</span> <span class="st">&quot;\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n%s\n\n&quot;</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>	<span class="bu">printf</span> <span class="st">&quot;\n&quot;</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>	<span class="fu">cat</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span><span class="kw">;</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="kw">done</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="bu">printf</span> <span class="st">&quot;\n\n\n&quot;</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span> <span class="kw">;</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="kw">done</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a></span>
-<span id="cb2-20"><a href="#cb2-20"></a></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="va">SCRIPT=$(</span><span class="ex">realpath</span> <span class="st">&quot;</span><span class="va">$0</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="va">SCRIPTPATH=$(</span><span class="fu">dirname</span> <span class="st">&quot;</span><span class="va">$SCRIPT</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="va">ROOTPATH=</span><span class="st">&quot;</span><span class="va">$(</span><span class="bu">cd</span> <span class="st">&quot;</span><span class="va">$SCRIPTPATH</span><span class="st">&quot;</span>/../ <span class="kw">&amp;&amp;</span> <span class="bu">pwd</span><span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>        <span class="bu">printf</span> <span class="st">&quot;\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n%s\n\n&quot;</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>	<span class="bu">printf</span> <span class="st">&quot;\n&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>	<span class="fu">cat</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span><span class="kw">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="kw">done</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="bu">printf</span> <span class="st">&quot;\n\n\n&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span> <span class="kw">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">done</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a></span></code></pre></div>
 <p>(I don’t know shell if it’s bad that’s why) Obviously, while this makes finding and seeing the imports -ddump-minimal-imports easier, it still requires a lot of manual intervention and copy-paste. It so happens to be easily automated… as you’ve seen in this very post. I also didn’t notice there was a flag to set where they get dumped….</p>
 <h3 id="second-attempt-editor-integration">Second attempt, editor integration!<a href="#second-attempt-editor-integration" class="anchor"> #</a></h3>
 <p>There’s a <a href="http://www.haskellforall.com/2018/10/detailed-walkthrough-for-beginner.html">good blog post</a> by Gabriel Gonzalez that goes through and explains the implementation of a vim plugin that aligns equals signs. I won’t use it because I prefer running hindent on whole files to avoid <a href="http://catb.org/jargon/html/B/bikeshedding.html">bikeshedding</a> about formatting and decision paralysis. It’s one less thing I have to worry about if I let hindent decide the final format. I can focus on getting the code to work and let hindent indent it all proper like and consistent. Anyway, the idea was largely applicable (especially in maximal-imports, just look at it…) to the task at hand.</p>

@@ -1,17 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
-    xmlns:dc="http://purl.org/dc/elements/1.1/">
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>Mostly Absurd</title>
         <link>https://mostlyabsurd.github.io</link>
-        <description><![CDATA[Mostly Absurd]]></description>
-        <atom:link href="https://mostlyabsurd.github.io/rss.xml" rel="self"
-                   type="application/rss+xml" />
+        <description>Mostly Absurd</description>
+        <atom:link href="https://mostlyabsurd.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link>
         <lastBuildDate>2019-09-15T00:00:00Z</lastBuildDate>
         <item>
     <title>Min-Maxing Your Haskell Imports (examples)</title>
     <link>https://mostlyabsurd.github.io/posts/2019/06/09/minimal-imports-maximal-imports-examples/</link>
-    <description><![CDATA[<div class="row">
+    <description><div class="row">
   <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1 p-md-1 p-4">
     <section class="header">
       <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-1">
@@ -63,46 +61,46 @@
 <pre><code>ghc -O2 maximal-imports.hs</code></pre>
 <pre><code>vim maximal-imports.hs</code></pre>
 <p>In visual line mode (V) select these lines:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">import</span> <span class="dt">Data.Text</span> (<span class="dt">Text</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Text</span> (<span class="dt">Text</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span></span></code></pre></div>
 <p>Still in visual mode type</p>
 <pre><code>:!./maximal-imports</code></pre>
 <p>If you have put it on your path you may ommit the <code>./</code></p>
 <p>Your imports will now read as follows:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">import</span> <span class="dt">Data.Text</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Text</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span></span></code></pre></div>
 <p>See the difference? <code>import Data.Text (Text)</code> has been changed to <code>import Data.Text</code></p>
 <p>This is not a large change and it may not be obvious why you would want to do this. It’s a trivial change to make if you had reason to so why do we need a program? Why would we even want to make the change in the first place? First, Let’s see the effect on a different set of imports. The following is from a minimal-imports.hs.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">-- Main.imports</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span> (isJust, mapMaybe)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">import</span> <span class="dt">Data.Text</span> (<span class="dt">Text</span>)</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>  ( breakOnEnd</span>
-<span id="cb7-6"><a href="#cb7-6"></a>  , isPrefixOf</span>
-<span id="cb7-7"><a href="#cb7-7"></a>  , isSuffixOf</span>
-<span id="cb7-8"><a href="#cb7-8"></a>  , <span class="fu">lines</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>  , <span class="fu">pack</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>  , strip</span>
-<span id="cb7-11"><a href="#cb7-11"></a>  , unpack</span>
-<span id="cb7-12"><a href="#cb7-12"></a>  )</span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span> (getContents, putStrLn, readFile)</span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="kw">import</span> <span class="dt">Safe</span> (headMay)</span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="kw">import</span> <span class="dt">System.Directory</span> (getCurrentDirectory)</span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="kw">import</span> <span class="dt">System.Directory.Extra</span> (listFilesRecursive)</span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="kw">import</span> <span class="dt">System.FilePath</span> (takeFileName)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">-- Main.imports</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span> (isJust, mapMaybe)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Text</span> (<span class="dt">Text</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>  ( breakOnEnd</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>  , isPrefixOf</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>  , isSuffixOf</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>  , <span class="fu">lines</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>  , <span class="fu">pack</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>  , strip</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>  , unpack</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>  )</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span> (getContents, putStrLn, readFile)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Safe</span> (headMay)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">System.Directory</span> (getCurrentDirectory)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">System.Directory.Extra</span> (listFilesRecursive)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">System.FilePath</span> (takeFileName)</span></code></pre></div>
 <p>After we complete the same process of opening in vim, selecting the imports, and running <code>:!maximal-imports</code> (assuming it’s on your path this time) we end up with this:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">import</span> <span class="dt">Data.Text</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="kw">import</span> <span class="dt">Safe</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="kw">import</span> <span class="dt">System.Directory</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="kw">import</span> <span class="dt">System.Directory.Extra</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="kw">import</span> <span class="dt">System.FilePath</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Text</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Safe</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">System.Directory</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">System.Directory.Extra</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">System.FilePath</span></span></code></pre></div>
 <p>This is a much more drastic change! As you can guess, that would take a bit longer to do by hand. If you were doing this often to files with many imports it would be tedious. (Thus the creation of these programs) It’s possible your program will not compile immediately after this. If more than one module imports something named the same you’ll get conflicts. All you need to do is modify the problematic import statements to resolve the conflict (Use qualified or explicit imports) This is actually one of the reasons to use minimal imports in the first place… see Rationale near end.</p>
 <h4 id="why">Why?<a href="#why" class="anchor"> #</a></h4>
 <p>The original form with all of the imports listed explicitly is ideal. That’s what we want the final result to look like. The downside is when the imports are in that form it makes it harder to develop. You constantly have to modify the imports when you want to use another function or data type from a module. Your editor might not provide as useful automatic completion if the whole module is not in scope. GHC will complain. Your program won’t compile without adding imports. It might at least suggest what you need to import but then you have to move to the top of the file and edit the list and break your workflow. It’s much easier to temporarily relax the imports while adding features and then go back to minimal (explicit) imports when you’re finished.</p>
@@ -185,14 +183,14 @@
 <span id="cb11-58"><a href="#cb11-58"></a>  Data.Text.IO.putStrLn output</span></code></pre></div>
 <h4 id="example-no.-2">Example no. 2<a href="#example-no.-2" class="anchor"> #</a></h4>
 <p>The above program is the source of minimal-imports.hs after running minimal-imports on what looked more like the previous example of maximal-imports:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">import</span> <span class="dt">Data.Text</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="kw">import</span> <span class="dt">Safe</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="kw">import</span> <span class="dt">System.Directory</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="kw">import</span> <span class="dt">System.Directory.Extra</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="kw">import</span> <span class="dt">System.FilePath</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Maybe</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Text</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.Text.IO</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Safe</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">System.Directory</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">System.Directory.Extra</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">System.FilePath</span></span></code></pre></div>
 <p>(The complete program has been formatted by hindent, the exact version before formatting may sometimes be on fewer lines but should otherwise be verbatim)</p>
 <h2 id="rationale">Rationale<a href="#rationale" class="anchor"> #</a></h2>
 <h3 id="pvp-bounds">PVP Bounds<a href="#pvp-bounds" class="anchor"> #</a></h3>
@@ -205,7 +203,7 @@
     </div>
   </div>
 </div>
-]]></description>
+</description>
     <pubDate>Sun, 09 Jun 2019 00:00:00 UT</pubDate>
     <guid>https://mostlyabsurd.github.io/posts/2019/06/09/minimal-imports-maximal-imports-examples/</guid>
     <dc:creator>Robert Djubek</dc:creator>
@@ -213,7 +211,7 @@
 <item>
     <title>Min-Maxing Your Haskell Imports</title>
     <link>https://mostlyabsurd.github.io/posts/2019/06/03/minimal-imports-maximal-imports/</link>
-    <description><![CDATA[<div class="row">
+    <description><div class="row">
   <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1 p-md-1 p-4">
     <section class="header">
       <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-1">
@@ -258,26 +256,26 @@
 <h3 id="the-hard-part-already-exists">The hard part already exists<a href="#the-hard-part-already-exists" class="anchor"> #</a></h3>
 <p>If you’re not familiar with it beyond the mentioning above <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/separate_compilation.html#ghc-flag--ddump-minimal-imports">-ddump-minimal-imports</a> is a GHC flag that causes the compiler to create the files with the form M.imports. (where M is the module name) The contents of the file are the explicit imports that we desire in our final project.</p>
 <h3 id="my-first-attempt">My first attempt<a href="#my-first-attempt" class="anchor"> #</a></h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#!/bin/sh</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="va">SCRIPT=$(</span><span class="ex">realpath</span> <span class="st">&quot;</span><span class="va">$0</span><span class="st">&quot;</span><span class="va">)</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="va">SCRIPTPATH=$(</span><span class="fu">dirname</span> <span class="st">&quot;</span><span class="va">$SCRIPT</span><span class="st">&quot;</span><span class="va">)</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="va">ROOTPATH=</span><span class="st">&quot;</span><span class="va">$(</span><span class="bu">cd</span> <span class="st">&quot;</span><span class="va">$SCRIPTPATH</span><span class="st">&quot;</span>/../ <span class="kw">&amp;&amp;</span> <span class="bu">pwd</span><span class="va">)</span><span class="st">&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>        <span class="bu">printf</span> <span class="st">&quot;\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n%s\n\n&quot;</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>	<span class="bu">printf</span> <span class="st">&quot;\n&quot;</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>	<span class="fu">cat</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span><span class="kw">;</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="kw">done</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="bu">printf</span> <span class="st">&quot;\n\n\n&quot;</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span> <span class="kw">;</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="kw">done</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a></span>
-<span id="cb2-20"><a href="#cb2-20"></a></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="va">SCRIPT=$(</span><span class="ex">realpath</span> <span class="st">&quot;</span><span class="va">$0</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="va">SCRIPTPATH=$(</span><span class="fu">dirname</span> <span class="st">&quot;</span><span class="va">$SCRIPT</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="va">ROOTPATH=</span><span class="st">&quot;</span><span class="va">$(</span><span class="bu">cd</span> <span class="st">&quot;</span><span class="va">$SCRIPTPATH</span><span class="st">&quot;</span>/../ <span class="kw">&amp;&amp;</span> <span class="bu">pwd</span><span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>        <span class="bu">printf</span> <span class="st">&quot;\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n%s\n\n&quot;</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>	<span class="bu">printf</span> <span class="st">&quot;\n&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>	<span class="fu">cat</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span><span class="kw">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a><span class="kw">done</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="bu">printf</span> <span class="st">&quot;\n\n\n&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="kw">for</span> <span class="ex">i</span> in <span class="st">&quot;</span><span class="va">$ROOTPATH</span><span class="st">&quot;</span>/dist-newstyle/build/x86_64-linux/ghc-8.6.4/*/*/*/build/site/site-tmp/*.imports<span class="kw">;</span> <span class="kw">do</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>	<span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$i</span><span class="st">&quot;</span> <span class="kw">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a><span class="kw">done</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a></span></code></pre></div>
 <p>(I don’t know shell if it’s bad that’s why) Obviously, while this makes finding and seeing the imports -ddump-minimal-imports easier, it still requires a lot of manual intervention and copy-paste. It so happens to be easily automated… as you’ve seen in this very post. I also didn’t notice there was a flag to set where they get dumped….</p>
 <h3 id="second-attempt-editor-integration">Second attempt, editor integration!<a href="#second-attempt-editor-integration" class="anchor"> #</a></h3>
 <p>There’s a <a href="http://www.haskellforall.com/2018/10/detailed-walkthrough-for-beginner.html">good blog post</a> by Gabriel Gonzalez that goes through and explains the implementation of a vim plugin that aligns equals signs. I won’t use it because I prefer running hindent on whole files to avoid <a href="http://catb.org/jargon/html/B/bikeshedding.html">bikeshedding</a> about formatting and decision paralysis. It’s one less thing I have to worry about if I let hindent decide the final format. I can focus on getting the code to work and let hindent indent it all proper like and consistent. Anyway, the idea was largely applicable (especially in maximal-imports, just look at it…) to the task at hand.</p>
@@ -286,7 +284,7 @@
     </div>
   </div>
 </div>
-]]></description>
+</description>
     <pubDate>Mon, 03 Jun 2019 00:00:00 UT</pubDate>
     <guid>https://mostlyabsurd.github.io/posts/2019/06/03/minimal-imports-maximal-imports/</guid>
     <dc:creator>Robert Djubek</dc:creator>
@@ -294,7 +292,7 @@
 <item>
     <title>Pandoc Include Code</title>
     <link>https://mostlyabsurd.github.io/posts/2019/04/25/pandoc-include-code/</link>
-    <description><![CDATA[<div class="row">
+    <description><div class="row">
   <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1 p-md-1 p-4">
     <section class="header">
       <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-1">
@@ -340,24 +338,24 @@
 <span id="cb2-30"><a href="#cb2-30"></a>    defaultHakyllReaderOptions</span>
 <span id="cb2-31"><a href="#cb2-31"></a>    defaultHakyllWriterOptions</span>
 <span id="cb2-32"><a href="#cb2-32"></a>    (unsafeCompiler <span class="op">.</span> includeCodeTransform)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">import</span> <span class="dt">Text.Pandoc</span> (<span class="dt">Format</span> (..), <span class="dt">Pandoc</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Walk</span> (walkM)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Filter.IncludeCode</span> (includeCode)</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="ot">includeCodeTransform ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Pandoc</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>includeCodeTransform <span class="ot">=</span> walkM (includeCode (<span class="dt">Just</span> (<span class="dt">Format</span> <span class="st">&quot;html5&quot;</span>)))</span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="ot">includeCodePandocCompiler ::</span> <span class="dt">Compiler</span> (<span class="dt">Item</span> <span class="dt">String</span>)</span>
-<span id="cb3-9"><a href="#cb3-9"></a>includeCodePandocCompiler <span class="ot">=</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>  pandocCompilerWithTransformM</span>
-<span id="cb3-11"><a href="#cb3-11"></a>    defaultHakyllReaderOptions</span>
-<span id="cb3-12"><a href="#cb3-12"></a>    defaultHakyllWriterOptions</span>
-<span id="cb3-13"><a href="#cb3-13"></a>    (unsafeCompiler <span class="op">.</span> includeCodeTransform)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Text.Pandoc</span> (<span class="dt">Format</span> (..), <span class="dt">Pandoc</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Walk</span> (walkM)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Filter.IncludeCode</span> (includeCode)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="ot">includeCodeTransform ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Pandoc</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>includeCodeTransform <span class="ot">=</span> walkM (includeCode (<span class="dt">Just</span> (<span class="dt">Format</span> <span class="st">&quot;html5&quot;</span>)))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="ot">includeCodePandocCompiler ::</span> <span class="dt">Compiler</span> (<span class="dt">Item</span> <span class="dt">String</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>includeCodePandocCompiler <span class="ot">=</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>  pandocCompilerWithTransformM</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    defaultHakyllReaderOptions</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>    defaultHakyllWriterOptions</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    (unsafeCompiler <span class="op">.</span> includeCodeTransform)</span></code></pre></div>
       </section>
     </div>
   </div>
 </div>
-]]></description>
+</description>
     <pubDate>Thu, 25 Apr 2019 00:00:00 UT</pubDate>
     <guid>https://mostlyabsurd.github.io/posts/2019/04/25/pandoc-include-code/</guid>
     <dc:creator>Robert Djubek</dc:creator>

@@ -11,7 +11,7 @@
     <meta name="author" content="Robert Djubek" />
       <meta name="keywords" content="hakyll,haskell,pandoc,pandoc include code">
 
-    <link href="../../../../../css/purifiedcss.css" rel="stylesheet" />
+    <link href="../../../../../css/purifiedcss.css" rel="stylesheet" media="all" />
     <link rel="shortcut icon" href="../../../../../favicon.ico" type="image/x-icon" />
     <link rel="icon" href="../../../../../favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="../../../../../apple-touch-icon.png">
@@ -75,7 +75,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 p-md-1 p-1">
+        <div class="col-xs-6 offset-xs-3 col-sm-8 offset-sm-2 p-xs-1 p-1">
           
           <h1>Pandoc Include Code</h1>
           
@@ -127,19 +127,19 @@
 <span id="cb2-30"><a href="#cb2-30"></a>    defaultHakyllReaderOptions</span>
 <span id="cb2-31"><a href="#cb2-31"></a>    defaultHakyllWriterOptions</span>
 <span id="cb2-32"><a href="#cb2-32"></a>    (unsafeCompiler <span class="op">.</span> includeCodeTransform)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">import</span> <span class="dt">Text.Pandoc</span> (<span class="dt">Format</span> (..), <span class="dt">Pandoc</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Walk</span> (walkM)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Filter.IncludeCode</span> (includeCode)</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="ot">includeCodeTransform ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Pandoc</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>includeCodeTransform <span class="ot">=</span> walkM (includeCode (<span class="dt">Just</span> (<span class="dt">Format</span> <span class="st">&quot;html5&quot;</span>)))</span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="ot">includeCodePandocCompiler ::</span> <span class="dt">Compiler</span> (<span class="dt">Item</span> <span class="dt">String</span>)</span>
-<span id="cb3-9"><a href="#cb3-9"></a>includeCodePandocCompiler <span class="ot">=</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>  pandocCompilerWithTransformM</span>
-<span id="cb3-11"><a href="#cb3-11"></a>    defaultHakyllReaderOptions</span>
-<span id="cb3-12"><a href="#cb3-12"></a>    defaultHakyllWriterOptions</span>
-<span id="cb3-13"><a href="#cb3-13"></a>    (unsafeCompiler <span class="op">.</span> includeCodeTransform)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Text.Pandoc</span> (<span class="dt">Format</span> (..), <span class="dt">Pandoc</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Walk</span> (walkM)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Text.Pandoc.Filter.IncludeCode</span> (includeCode)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="ot">includeCodeTransform ::</span> <span class="dt">Pandoc</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Pandoc</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>includeCodeTransform <span class="ot">=</span> walkM (includeCode (<span class="dt">Just</span> (<span class="dt">Format</span> <span class="st">&quot;html5&quot;</span>)))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="ot">includeCodePandocCompiler ::</span> <span class="dt">Compiler</span> (<span class="dt">Item</span> <span class="dt">String</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>includeCodePandocCompiler <span class="ot">=</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>  pandocCompilerWithTransformM</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    defaultHakyllReaderOptions</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>    defaultHakyllWriterOptions</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    (unsafeCompiler <span class="op">.</span> includeCodeTransform)</span></code></pre></div>
       </section>
     </div>
   </div>
